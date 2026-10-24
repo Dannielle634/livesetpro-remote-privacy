@@ -10,32 +10,35 @@
 <h2>Compatible apps and access</h2>
 <p>Use a Windows LiveSetPro host and Android Remote build that both support negotiated Player controls and Karaoke Follow control. Confirm the supplied release/build supports these features; secure QR support alone does not establish control compatibility.</p>
 <p>Install/open LiveSetPro for Windows with full access using the Microsoft reviewer account supplied privately in Google Play App Access. LiveSetPro Remote has no Android app account. Public Windows download: <a href="https://apps.microsoft.com/detail/9N369WGHGVTS">https://apps.microsoft.com/detail/9N369WGHGVTS</a>. Keep reviewer credentials out of this guide and public downloads.</p>
-<h2>Reviewer content and remaining asset requirement</h2>
-<p>The existing LiveSetPro-Reviewer-Test.livesetpro archive remains unchanged. It contains one original test song with audio pulses and timed lyrics, suitable for the existing pairing/lyrics check. It is not sufficient for Previous/Next or Repeat All acceptance. SHA-256: 818b36763ae72a77945ae74c0510c75afa2300502932f674045919c057c85530.</p>
-<p>Download the existing one-song archive: <a href="LiveSetPro-Reviewer-Test.livesetpro" download>https://dannielle634.github.io/livesetpro-remote-privacy/reviewer/LiveSetPro-Reviewer-Test.livesetpro</a></p>
-<p>REMAINING ACTION: prepare and validate a separate, public-safe archive with at least three original/test-safe songs in a documented A, B, C order, each preferably with timed lyrics. Include a content/rights notice, hashes and import/physical verification. It must support Repeat All A → B → C → A. No valid three-song replacement has been identified in the available reviewer materials. Do not use private production-library songs or assume rights to commercial recordings. Do not mark the multi-song checks complete with the current download.</p>
-<p>For the future three-song test, use an isolated review library or a dedicated playlist containing only A, B, C in that order. Disable Shuffle, A–B looping and optional automatic mixing/pause-between-tracks on Windows for deterministic results. Start playback from that playlist so it is the active playback source.</p>
+<h2>Recommended reviewer archive v2</h2>
+<p>Use <strong>LiveSetPro-Reviewer-Test-v2.livesetpro</strong>, <strong>6,353,437 bytes</strong>. SHA-256: <code>43de2ab699ba55908a3a844aa4c83774ef15916022bb2ea7914ce26fc37aab6f</code>.</p>
+<p><a href="LiveSetPro-Reviewer-Test-v2.livesetpro" download>Download the three-song reviewer archive v2</a></p>
+<p>The archive contains <strong>Reviewer Track A</strong>, <strong>Reviewer Track B</strong> and <strong>Reviewer Track C</strong>, artist <strong>LiveSetPro Review Test</strong>. Each is 24 seconds of original synthetic PCM WAV audio with original artificial lyrics timed at 0–6, 6–12, 12–18 and 18–24 seconds. Playlist <strong>Reviewer Test</strong> preserves <strong>A → B → C</strong>, total <strong>01:12</strong>, for Previous/Next and Repeat All <strong>A → B → C → A</strong> checks.</p>
+<p>These generated fixtures may be copied, modified and redistributed for testing and review. No commercial/user audio or copied lyrics are included; no formal copyright registration is claimed.</p>
+<p>The release owner confirmed the v2 static audit, clean isolated import, live playback of A/B/C, Previous/Next, Repeat Off/All/One and timed Karaoke Follow validation. This is user-confirmed asset acceptance, not a newly published app build.</p>
+<p>Historical one-song archive retained: <a href="LiveSetPro-Reviewer-Test.livesetpro" download>LiveSetPro-Reviewer-Test.livesetpro</a>. Its unchanged SHA-256 is <code>818b36763ae72a77945ae74c0510c75afa2300502932f674045919c057c85530</code>. Use v2 for the current multi-song workflow.</p>
+<p>Use an isolated review library and select <strong>Reviewer Test</strong>. Set <strong>Shuffle off</strong>, leave A–B unset, and disable <strong>Manual song transitions</strong> and <strong>Automatic song transitions</strong> in <strong>Open Mixing settings</strong> for deterministic results. Start playback from this playlist so it is the active playback source.</p>
 <h2>1. Import review content</h2>
 <ol class="steps">
-<li>On a reviewer PC/profile, open Settings → Import library under Import and export. These steps use the English interface.</li>
-<li>Select the downloaded .livesetpro archive as one file; do not unzip it.</li>
+<li>On an isolated reviewer PC/profile, confirm All Songs = 0, then open Settings → Import and export → Import library. These steps use the English interface.</li>
+<li>Select LiveSetPro-Reviewer-Test-v2.livesetpro as one file; do not unzip it.</li>
 <li>Review the import preview, then choose Import library → Confirm and add.</li>
-<li>The existing archive adds one song, one audio file and one lyric document to an empty library. Open All Songs and double-click LiveSetPro Reviewer Test, then pause while pairing.</li>
-<li>Once the separate three-song archive is validated, use its documented playlist/order for multi-song tests. Do not re-import content already present just to repeat a test.</li>
+<li>Wait for IMPORT COMPLETE. Confirm three songs, three audio files and three lyric documents were added. Select Reviewer Test and verify 3 / 01:12 in A → B → C order.</li>
+<li>Double-click Reviewer Track A in that playlist, then pause while pairing. Do not re-import content already present just to repeat a test.</li>
 </ol>
 <h2>2. Pair and verify Read-only</h2>
 <ol class="steps">
 <li>Open Lyrics → Remote in Windows and start a new Remote session. Wait for the fresh session QR.</li>
 <li>On Android choose Scan QR, scan it, and approve the necessary camera/Wi-Fi prompts.</li>
 <li>Confirm the connected session is Read-only / control disabled. Android control requests must be disabled. Lyrics and playback information can still be received.</li>
-<li>For the existing 24-second song, start playback on Windows from 0:00. Confirm the phone follows the four lyric sections at 0–6, 6–12, 12–18 and 18–24 seconds. Audio remains on Windows.</li>
+<li>Start Reviewer Track A on Windows from 0:00. Confirm the phone follows the four lyric sections at 0–6, 6–12, 12–18 and 18–24 seconds. B and C use the same timing. Audio remains on Windows.</li>
 </ol>
 <h2>3. Authorize and test Player</h2>
 <ol class="steps">
 <li>In the Windows Remote panel, explicitly select Allow control. Open Player on Android and wait for the host&#x27;s current state.</li>
 <li>Verify Play/Pause and Stop against Windows. Windows is authoritative; a sent request is not proof of success until the returned state reflects it. Android does not stream audio or offer remote seeking through its progress indicator.</li>
-<li>With the validated A, B, C playlist active, verify Next changes A → B and Previous returns B → A. Test Previous within the first three seconds of B; later presses can restart the current song as on Windows.</li>
-<li>Verify Repeat Off, All and One update the Windows setting and the Android state. For end-of-track checks with the neutral playback settings above: Off stops automatic advancement, One repeats the current song, and All traverses A → B → C → A. Multi-song acceptance remains pending until the three-song asset exists.</li>
+<li>With Reviewer Test active, verify Next changes A → B and B → C. Start C and test Previous within its first three seconds to return C → B; later presses can restart the current song as on Windows.</li>
+<li>Verify Repeat Off, All and One update the Windows setting and the Android state. With the neutral playback settings above, let the 24-second tracks end naturally: Off ends A without starting B; All traverses A → B → C → A; One repeats A → A.</li>
 <li>Adjust Android&#x27;s Windows volume control and verify the LiveSetPro player volume changes on the PC. This is normalized app volume, not phone volume or Windows system master volume. Check the returned volume/mute state. Shuffle is displayed where supported; this guide does not promise an Android Shuffle command.</li>
 </ol>
 <h2>4. Test Lyrics and Karaoke Follow</h2>
